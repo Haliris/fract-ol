@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 10:56:18 by jteissie          #+#    #+#              #
-#    Updated: 2024/06/28 14:49:03 by jteissie         ###   ########.fr        #
+#    Updated: 2024/06/28 15:53:02 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CCFLAGS = -Wall -Werror -Wextra -g3
 NAME = fractol
 
 SRC_FILES = main.c \
-			utils.c
+			utils.c \
+			events.c
 
 INCLUDE = 	-I include/ \
 			-I minilibx-linux \
