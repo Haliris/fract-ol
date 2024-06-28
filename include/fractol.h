@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/06/28 14:37:34 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:12:09 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ typedef struct s_process
 {
 	void	*mlx;
 	void	*window;
-	void	*set;
-	void	*img;
 }	t_process;
 
 void		clean(t_process *process);
-t_process	initialize(void);
+void		initialize(t_process *process);
 #endif

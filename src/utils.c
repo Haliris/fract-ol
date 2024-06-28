@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:35:41 by jteissie          #+#    #+#             */
-/*   Updated: 2024/06/28 14:36:16 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:29:19 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,15 @@
 
 void	clean(t_process *process)
 {
-	if (process->window)
-	{
+	if (process->window && process->mlx)
 		mlx_destroy_window(process->mlx, process->window);
-	}
+	mlx_destroy_display(process->mlx);
 	free(process->mlx);
-	free(process);
-	return ;
+	exit (EXIT_SUCCESS);
 }
 
-t_process	initialize(void)
+void	initialize(t_process *process)
 {
-	t_process	*process;
-
-	process = ft_calloc(1, sizeof(t_process));
-	if (!process)
-		exit(EXIT_FAILURE);
 	process->mlx = mlx_init();
 	if (!process->mlx)
 	{
