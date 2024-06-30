@@ -15,6 +15,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include "math.h"
+# define HEIGHT 800
+# define WIDTH 800
 
 // typedef	struct	s_image
 // {
@@ -29,10 +31,12 @@ typedef struct s_process
 	void	*window;
 	void	*img;
 	char	*img_addr;
+	int		color;
 	int		size;
 }	t_process;
 
 void		clean(t_process *process);
+int			create_trgb(int t, int r, int g, int b);
 void		initialize(t_process *process);
 int			key_events(int keycode, t_process *process);
 int			mouse_events(int mouse_code, t_process *process);

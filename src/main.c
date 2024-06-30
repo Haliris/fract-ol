@@ -18,18 +18,27 @@
 // Parse set and draw on image depending on function
 // Handle movement
 
-void	set_color(t_process *p)
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	set_color(t_process *p, int size_line, int bpp)
 {
 	int	x;
 	int	y;
+	int	pixel_index;
+	int	color;
 
+	color = (255 << 16) | (165 << 8) | 0; //Orange 
 	x = 0;
 	y = 0;
-	while (y < 700)
+	while (y < HEIGHT)
 	{
-		while (x < 700)
+		while (x < WIDTH)
 		{
-			p->img_addr[x + y] = 0x000000BB;
+			pixel_index = (y * size_line) + (x * (bpp / 8));
+			*(int *)(p->img_addr + pixel_index) = color;
 			x++;
 		}
 		x = 0;
@@ -39,10 +48,16 @@ void	set_color(t_process *p)
 
 void	create_image(t_process *p, char *set)
 {
-	(void)set;
-	set_color(p);
-	mlx_put_image_to_window(p->mlx, p->window, p->img, p->size, p->size);
+	int	pixel_bits;
+	int	line_bytes;
+	int	endian;
 
+	(void)set;
+	p->img_addr = mlx_get_data_addr(p->img, &pixel_bits, &line_bytes, &endian);
+	set_color(p, line_bytes, pixel_bits);
+	//DRAW LINES
+	//UNderstand bpp
+	mlx_put_image_to_window(p->mlx, p->window, p->img, 0, 0);
 }
 
 int	main(int ac, char **av)

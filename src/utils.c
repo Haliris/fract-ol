@@ -16,7 +16,7 @@ void	clean(t_process *process)
 {
 	if (process->img)
 		mlx_destroy_image(process->mlx, process->img);
-	if (process->window && process->mlx)
+	if (process->window)
 		mlx_destroy_window(process->mlx, process->window);
 	mlx_destroy_display(process->mlx);
 	free(process->mlx);
@@ -25,22 +25,19 @@ void	clean(t_process *process)
 
 void	initialize(t_process *p)
 {
-	int	pixel_bits;
-	int	line_bytes;
-	int	endian;
-
-	p->size = 700;
+	p->size = WIDTH;
 	p->mlx = mlx_init();
-	p->img = mlx_new_image(p->mlx, 700, 700);
+	p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
+	p->color = create_trgb(0, 0, 0 , 0);
 	if (!p->img)
 		clean(p);
-	p->img_addr = mlx_get_data_addr(p->img, &pixel_bits, &line_bytes, &endian);
+	p->img_addr = NULL;
 	if (!p->mlx)
 	{
 		clean(p);
 		exit(EXIT_FAILURE);
 	}
-	p->window = mlx_new_window(p->mlx, 700, 700, "Fract-ol");
+	p->window = mlx_new_window(p->mlx, WIDTH, HEIGHT, "Fract-ol");
 	if (!p->window)
 	{
 		clean(p);
