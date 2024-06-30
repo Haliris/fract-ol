@@ -18,27 +18,29 @@
 // Parse set and draw on image depending on function
 // Handle movement
 
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+
 
 void	set_color(t_process *p, int size_line, int bpp)
 {
 	int	x;
 	int	y;
 	int	pixel_index;
-	int	color;
+	int	white;
+	int	orange;
 
-	color = (255 << 16) | (165 << 8) | 0; //Orange 
-	x = 0;
+	orange = create_color(255, 165, 0);
+	white =  create_color(0, 0, 0);
 	y = 0;
+	x = 0;
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
 		{
 			pixel_index = (y * size_line) + (x * (bpp / 8));
-			*(int *)(p->img_addr + pixel_index) = color;
+			if (x == y)
+				*(int *)(p->img_addr + pixel_index) = orange;
+			else
+				*(int *)(p->img_addr + pixel_index) = white;
 			x++;
 		}
 		x = 0;

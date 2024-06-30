@@ -25,14 +25,22 @@
 // 	int		size_line;
 // }	t_image;
 
+typedef	struct s_palette
+{
+	int	background;
+	int	outer;
+	int	outline;
+	int	core;
+}	t_palette;
+
 typedef struct s_process
 {
-	void	*mlx;
-	void	*window;
-	void	*img;
-	char	*img_addr;
-	int		color;
-	int		size;
+	void		*mlx;
+	void		*window;
+	void		*img;
+	char		*img_addr;
+	t_palette	palette;
+	int			size;
 }	t_process;
 
 void		clean(t_process *process);
@@ -41,5 +49,6 @@ void		initialize(t_process *process);
 int			key_events(int keycode, t_process *process);
 int			mouse_events(int mouse_code, t_process *process);
 int			resize_events(int code, t_process *process);
+int			create_color(int r, int g, int b);
 
 #endif
