@@ -39,7 +39,7 @@ typedef struct s_process
 	void		*window;
 	void		*img;
 	char		*img_addr;
-	t_palette	palette;
+	t_palette	*palette;
 	int			size;
 }	t_process;
 

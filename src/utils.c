@@ -30,14 +30,14 @@ int	create_color(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-t_pallete	create_palette(char *mode)
+t_palette	*create_palette(char *mode)
 {
-	t_palette	palette;
+	t_palette	*palette;
 
-	ft_calloc(1, sizeof(palette))
+	palette = ft_calloc(1, sizeof(palette));
 	if (!palette)
-		return (NULL);
-	ft_strncmp(mode, "default", 7 == 0)
+		return (palette);
+	if (ft_strncmp(mode, "default", 7 == 0))
 	{
 		palette->background = create_color(0, 0, 0);
 		palette->outer = create_color(0, 0, 255);
