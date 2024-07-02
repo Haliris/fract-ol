@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:11:11 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:09:27 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ void	create_image(t_fractole *f, char *set)
 	int	line_bytes;
 	int	endian;
 
-	(void)set;
 	f->img_addr = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
-	render_mandelbrot(f, line_bytes, pixel_bits);
+	if (ft_strncmp(set, "mandelbrot", 10) == 0)
+		render_mandelbrot(f, line_bytes, pixel_bits);
+	else if (ft_strncmp(set, "julia", 5) == 0)
+		render_julia(f, line_bytes, pixel_bits);
+	else
+		return ;
 	mlx_put_image_to_window(f->mlx, f->window, f->img, 0, 0);
 }
 

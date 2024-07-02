@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:35:41 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 11:16:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:40:30 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@ void	clean(t_fractole *fractole)
 	mlx_destroy_display(fractole->mlx);
 	free(fractole->mlx);
 	exit (EXIT_SUCCESS);
+}
+
+void	set_scale(t_fractole *f, int mode)
+{
+	if (mode == MANDELBROT)
+	{
+		f->min_r = -2.0;
+		f->max_r = 1.0;
+		f->max_i = -1.5;
+		f->min_i =  f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	}
+	if (mode == JULIA)
+	{
+		f->min_r = -2.0;
+		f->max_r = 2.0;
+		f->max_i = -2.0;
+		f->min_i =  f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	}
 }
 
 void	initialize(t_fractole *f)

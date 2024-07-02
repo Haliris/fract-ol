@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:33:14 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:00:24 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:47:20 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	iterate_mandelbrot(const double c_real, const double c_imag)
 	return (iter);
 }
 
+
 void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
 {
 	int			x;
@@ -43,14 +44,15 @@ void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
 
 	y = 0;
 	x = 0;
+	set_scale(f, MANDELBROT);
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
 		{
-			real = ((x - WIDTH / 2.0) * 4.0 / WIDTH);
-			imag = ((y - HEIGHT / 2.0) * 4.0 / HEIGHT);
-			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
+			real = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+			imag = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 			iter = iterate_mandelbrot(real, imag);
+			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
 			put_color(f, pixel_index, iter);
 			x++;
 		}
