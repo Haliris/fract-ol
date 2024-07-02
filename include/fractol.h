@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/06/28 16:25:49 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:08:31 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef	struct s_palette
 	int	core;
 }	t_palette;
 
-typedef struct s_process
+typedef struct s_fractole
 {
 	void		*mlx;
 	void		*window;
@@ -41,14 +41,14 @@ typedef struct s_process
 	char		*img_addr;
 	t_palette	*palette;
 	int			size;
-}	t_process;
+}	t_fractole;
 
-void		clean(t_process *process);
+void		clean(t_fractole *fractole);
 int			create_trgb(int t, int r, int g, int b);
-void		initialize(t_process *process);
-int			key_events(int keycode, t_process *process);
-int			mouse_events(int mouse_code, t_process *process);
-int			resize_events(int code, t_process *process);
+void		initialize(t_fractole *fractole);
+int			key_events(int keycode, t_fractole *fractole);
+int			mouse_events(int mouse_code, t_fractole *fractole);
+int			resize_events(int code, t_fractole *fractole);
 int			create_color(int r, int g, int b);
 
 #endif

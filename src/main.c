@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/06/28 16:49:08 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:05:49 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 
 
-void	set_color(t_process *p, int size_line, int bpp)
+void	set_color(t_fractole *f, int size_line, int bpp)
 {
 	int	x;
 	int	y;
@@ -38,9 +38,9 @@ void	set_color(t_process *p, int size_line, int bpp)
 		{
 			pixel_index = (y * size_line) + (x * (bpp / 8));
 			if (x == y)
-				*(int *)(p->img_addr + pixel_index) = orange;
+				*(int *)(f->img_addr + pixel_index) = orange;
 			else
-				*(int *)(p->img_addr + pixel_index) = white;
+				*(int *)(f->img_addr + pixel_index) = white;
 			x++;
 		}
 		x = 0;
@@ -48,32 +48,32 @@ void	set_color(t_process *p, int size_line, int bpp)
 	}
 }
 
-void	create_image(t_process *p, char *set)
+void	create_image(t_fractole *f, char *set)
 {
 	int	pixel_bits;
 	int	line_bytes;
 	int	endian;
 
 	(void)set;
-	p->img_addr = mlx_get_data_addr(p->img, &pixel_bits, &line_bytes, &endian);
-	set_color(p, line_bytes, pixel_bits);
+	f->img_addr = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
+	set_color(f, line_bytes, pixel_bits);
 	//DRAW LINES
 	//UNderstand bpp
-	mlx_put_image_to_window(p->mlx, p->window, p->img, 0, 0);
+	mlx_put_image_to_window(f->mlx, f->window, f->img, 0, 0);
 }
 
 int	main(int ac, char **av)
 {
-	t_process	process;
+	t_fractole	fractole;
 
 	(void)av;
 	if (ac != 2)
 		return (EXIT_FAILURE);
-	initialize(&process);
-	create_image(&process, av[1]);
-	mlx_expose_hook(process.window, resize_events, &process);
-	mlx_mouse_hook(process.window, mouse_events, &process);
- 	mlx_key_hook(process.window, key_events, &process);
- 	mlx_loop(process.mlx);
+	initialize(&fractole);
+	create_image(&fractole, av[1]);
+	mlx_expose_hook(fractole.window, resize_events, &fractole);
+	mlx_mouse_hook(fractole.window, mouse_events, &fractole);
+ 	mlx_key_hook(fractole.window, key_events, &fractole);
+ 	mlx_loop(fractole.mlx);
 	return (EXIT_SUCCESS);
 }
