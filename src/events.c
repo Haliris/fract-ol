@@ -33,11 +33,7 @@ void	do_zoom(t_fractole *f, double dist)
 	f->max_r = r_center + r_range / 2.0;
 	f->min_i = i_center - i_range / 2.0;
 	f->max_i = i_center + i_range / 2.0;
-	mlx_destroy_image(f->mlx, f->img);
-	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
-	mlx_clear_window(f->mlx, f->window);
-	create_image(f);
-	// update_img(f);
+	
 }
 
 int	key_events(int keycode, t_fractole *fractole)
@@ -46,6 +42,7 @@ int	key_events(int keycode, t_fractole *fractole)
 		do_zoom(fractole, 2.0);
 	if (keycode == ESC_KEY)
 		clean(fractole);
+ create_image(fractole);
 	return (1);
 }
 
