@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/02 11:33:14 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:00:24 by jteissie         ###   ########.fr       */
+/*   Created: 2024/07/02 14:53:37 by jteissie          #+#    #+#             */
+/*   Updated: 2024/07/02 15:01:31 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	iterate_mandelbrot(const double c_real, const double c_imag)
+int	iterate_julia(const double c_real, const double c_imag)
 {
 	int		iter;
 	double	z_real;
@@ -22,7 +22,7 @@ int	iterate_mandelbrot(const double c_real, const double c_imag)
 	iter = 0;
 	z_imag = 0;
 	z_real = 0;
-	while (z_real * z_real + z_imag * z_imag <= MANDELBROT_ESCAPE && iter < MAX_ITER)
+	while (z_real * z_real + z_imag * z_imag <= JULIA_ESCAPE && iter < MAX_ITER)
 	{
 		real_temp = z_real * z_real - z_imag * z_imag + c_real;
 		z_imag = 2.0 * z_real * z_imag + c_imag;
@@ -32,7 +32,7 @@ int	iterate_mandelbrot(const double c_real, const double c_imag)
 	return (iter);
 }
 
-void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
+void	render_julia(t_fractole *f, int size_line, int bpp)
 {
 	int			x;
 	int			y;
@@ -50,7 +50,7 @@ void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
 			real = ((x - WIDTH / 2.0) * 4.0 / WIDTH);
 			imag = ((y - HEIGHT / 2.0) * 4.0 / HEIGHT);
 			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
-			iter = iterate_mandelbrot(real, imag);
+			iter = iterate_julia(real, imag);
 			put_color(f, pixel_index, iter);
 			x++;
 		}

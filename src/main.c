@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 13:06:29 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:11:11 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 // Mandelbrot Zn+1 = Zn2 + C
 // Julia z = z2 + c
 
-// Create Window
 // Parse set and draw on image depending on function
 // Handle movement
-
+//Pre-calculate movements
 
 
 

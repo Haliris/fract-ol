@@ -6,13 +6,13 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 10:56:18 by jteissie          #+#    #+#              #
-#    Updated: 2024/07/02 13:04:05 by jteissie         ###   ########.fr        #
+#    Updated: 2024/07/02 14:54:17 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CCFLAGS = -Wall -Werror -Wextra -g3
+CCFLAGS = -Wall -Werror -Wextra -g3 -MMD
 
 NAME = fractol
 
@@ -20,7 +20,8 @@ SRC_FILES = main.c \
 			utils.c \
 			events.c \
 			palette_utils.c \
-			mandelbrot.c
+			mandelbrot.c \
+			julia.c
 
 INCLUDE = 	-I include/ \
 			-I minilibx-linux \
@@ -39,6 +40,7 @@ OBJ_DIR = obj/
 vpath %.c src
 
 OBJ_FILES = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_FILES))
+DEPS = $(OBJ_FILES:$(OBJ_DIR)%.o=%.d)
 
 all : minilibx-linux $(NAME)
 
@@ -70,3 +72,4 @@ fclean : clean
 re : fclean clean all
 
 .PHONY : all clean fclean re bonus
+-include $(DEPS)
