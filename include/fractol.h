@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 11:08:31 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:16:07 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef struct s_fractole
 }	t_fractole;
 
 void		clean(t_fractole *fractole);
-int			create_trgb(int t, int r, int g, int b);
 void		initialize(t_fractole *fractole);
 int			key_events(int keycode, t_fractole *fractole);
+void		swap_palette(t_fractole *f, char *mode);
 int			mouse_events(int mouse_code, t_fractole *fractole);
 int			resize_events(int code, t_fractole *fractole);
 int			create_color(int r, int g, int b);

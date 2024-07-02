@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 11:05:49 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:16:07 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,20 @@ void	set_color(t_fractole *f, int size_line, int bpp)
 	int	x;
 	int	y;
 	int	pixel_index;
-	int	white;
-	int	orange;
+	t_palette	*palette;
 
-	orange = create_color(255, 165, 0);
-	white =  create_color(0, 0, 0);
 	y = 0;
 	x = 0;
+	palette = f->palette;
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
 		{
 			pixel_index = (y * size_line) + (x * (bpp / 8));
 			if (x == y)
-				*(int *)(f->img_addr + pixel_index) = orange;
+				*(int *)(f->img_addr + pixel_index) = palette->core;
 			else
-				*(int *)(f->img_addr + pixel_index) = white;
+				*(int *)(f->img_addr + pixel_index) = palette->background;
 			x++;
 		}
 		x = 0;
