@@ -22,27 +22,24 @@ void	do_zoom(t_fractole *f, double dist)
 {
 	double	r_center;
 	double	i_center;
-	double	r_range;
-	double	i_range;
 
-	r_center = f->max_r - f->min_r;
+	r_center = f->min_r - f->max_r;
 	i_center = f->max_i - f->min_i;
-	r_range = (f->max_r - f->min_r) / dist;
-	i_range = (f->max_i - f->min_i) / dist;
-	f->min_r = r_center - r_range / 2.0;
-	f->max_r = r_center + r_range / 2.0;
-	f->min_i = i_center - i_range / 2.0;
-	f->max_i = i_center + i_range / 2.0;
-	
+	f->max_r = f->max_r + (r_center - dist * r_center) / 2.0;
+	f->min_r = f->max_r + dist * r_center;
+	f->min_i = f->min_i + (i_center - dist * i_center) / 2.0;
+	f->max_i = f->min_i + dist * i_center;
 }
 
 int	key_events(int keycode, t_fractole *fractole)
 {
 	if (keycode == 65451)
-		do_zoom(fractole, 2.0);
+		do_zoom(fractole, 0.10);
+	if (keycode == 65453)
+		do_zoom(fractole, 10.0);
 	if (keycode == ESC_KEY)
 		clean(fractole);
- create_image(fractole);
+	create_image(fractole);
 	return (1);
 }
 
@@ -55,9 +52,9 @@ void	do_dezoom(t_fractole *fractole, double dist)
 int	mouse_events(int mouse_code, t_fractole *fractole)
 {
 	if (mouse_code == 4)
-		do_zoom(fractole, 2.0);
+		do_zoom(fractole, 1.10);
 	if (mouse_code == 5)
-		do_dezoom(fractole, 2.0);
+		do_zoom(fractole, 0.90);
 	return (1);
 }
 

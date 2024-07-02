@@ -34,6 +34,7 @@ void	create_image(t_fractole *f)
 	int	line_bytes;
 	int	endian;
 
+	mlx_clear_window(f->mlx, f->window);
 	f->img_addr = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
 	if (f->set == MANDELBROT)
 		render_mandelbrot(f, line_bytes, pixel_bits);
