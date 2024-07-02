@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 17:41:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:25:15 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_fractole
 	double		min_r;
 	double		max_i;
 	double		min_i;
-	int			size;
+	int			set;
 }	t_fractole;
 
 void		clean(t_fractole *fractole);
@@ -55,12 +55,13 @@ void		initialize(t_fractole *fractole);
 int			key_events(int keycode, t_fractole *fractole);
 void		swap_palette(t_fractole *f, char *mode);
 int			mouse_events(int mouse_code, t_fractole *fractole);
-int			resize_events(int code, t_fractole *fractole);
-void		set_scale(t_fractole *f, int mode);
+int			resize_events(int code, t_fractole fractole);
+void		set_scale(t_fractole *f);
 
 int			create_color(int r, int g, int b);
 void		put_color(t_fractole *f, int pixel_index, int iter);
 
+void		create_image(t_fractole *f);
 void		render_mandelbrot(t_fractole *f, int size_line, int bpp);
 void		render_julia(t_fractole *f, int size_line, int bpp);
 #endif
