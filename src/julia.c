@@ -43,7 +43,6 @@ void	render_julia(t_fractole *f, int size_line, int bpp)
 
 	y = 0;
 	x = 0;
-	set_scale(f, JULIA);
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
