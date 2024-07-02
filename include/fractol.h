@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 11:16:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:39:14 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,9 @@
 # include "math.h"
 # define HEIGHT 800
 # define WIDTH 800
-
-// typedef	struct	s_image
-// {
-// 	char	*addr;
-// 	int		bits_per_pix;
-// 	int		size_line;
-// }	t_image;
-
+# define PIXEL_INDEX(x, y, line, bpp) ((y) * (line) + (x) * ((bpp) / 8));
+# define MANDELBROT_ESCAPE 2
+# define MAX_ITER 500
 typedef	struct s_palette
 {
 	int	background;
@@ -51,4 +46,5 @@ int			mouse_events(int mouse_code, t_fractole *fractole);
 int			resize_events(int code, t_fractole *fractole);
 int			create_color(int r, int g, int b);
 
+void		render_mandelbrot(t_fractole *f, int size_line, int bpp);
 #endif

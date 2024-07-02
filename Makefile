@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 10:56:18 by jteissie          #+#    #+#              #
-#    Updated: 2024/07/02 11:16:33 by jteissie         ###   ########.fr        #
+#    Updated: 2024/07/02 13:04:05 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ NAME = fractol
 SRC_FILES = main.c \
 			utils.c \
 			events.c \
-			palette_utils.c
+			palette_utils.c \
+			mandelbrot.c
 
 INCLUDE = 	-I include/ \
 			-I minilibx-linux \

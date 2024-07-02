@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 11:16:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:06:29 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,7 @@
 
 
 
-void	set_color(t_fractole *f, int size_line, int bpp)
-{
-	int	x;
-	int	y;
-	int	pixel_index;
-	t_palette	*palette;
 
-	y = 0;
-	x = 0;
-	palette = f->palette;
-	while (y < HEIGHT)
-	{
-		while (x < WIDTH)
-		{
-			pixel_index = (y * size_line) + (x * (bpp / 8));
-			if (x == y)
-				*(int *)(f->img_addr + pixel_index) = palette->core;
-			else
-				*(int *)(f->img_addr + pixel_index) = palette->background;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
 
 void	create_image(t_fractole *f, char *set)
 {
@@ -54,9 +30,7 @@ void	create_image(t_fractole *f, char *set)
 
 	(void)set;
 	f->img_addr = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
-	set_color(f, line_bytes, pixel_bits);
-	//DRAW LINES
-	//UNderstand bpp
+	render_mandelbrot(f, line_bytes, pixel_bits);
 	mlx_put_image_to_window(f->mlx, f->window, f->img, 0, 0);
 }
 
