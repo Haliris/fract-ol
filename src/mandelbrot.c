@@ -44,7 +44,6 @@ void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
 
 	y = 0;
 	x = 0;
-	set_scale(f, MANDELBROT);
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
