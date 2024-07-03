@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:51:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 11:47:02 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:42:46 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ void	do_zoom(t_fractole *f, double dist)
 
 void	do_move(t_fractole *f, double dist_r, double dist_i)
 {
-	double	r_center;
-	double	i_center;
+	double	range_r;
+	double	range_i;
 
-	r_center = f->min_r - f->max_r;
-	i_center = f->max_i - f->min_i;
-	f->max_r += dist_r;
-	f->min_r += dist_r;
-	f->max_i += dist_i;
-	f->min_i += dist_i;
+	range_r = f->max_r - f->min_r;
+	range_i = f->max_i - f->min_i;
+	f->max_r += dist_r * range_r;
+	f->min_r += dist_r * range_r;
+	f->max_i += dist_i * range_i;
+	f->min_i += dist_i * range_i;
 }
 
 int	key_events(int keycode, t_fractole *fractole)
 {
 	if (keycode == 65363) //right
-		do_move(fractole, 0.5, 0.0);
+		do_move(fractole, 0.1, 0.0);
 	if (keycode == 65361) //left
-		do_move(fractole, -0.5, 0.0);
+		do_move(fractole, -0.1, 0.0);
 	if (keycode == 65362) //up
-		do_move(fractole, 0.0, 0.5);
+		do_move(fractole, 0.0, 0.1);
 	if (keycode == 65364) //down
-		do_move(fractole, 0.0, -0.5);
+		do_move(fractole, 0.0, -0.1);
 	if (keycode == 112)
 		fractole->max_iter += 10;
 	if (keycode == 111)
