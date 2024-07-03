@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:22 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 16:33:47 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:35:37 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,93 +17,69 @@ int	create_color(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
+int interpolate_color(int color1, int color2, double t)
+{
+    int r1 = (color1 >> 16) & 0xFF;
+    int g1 = (color1 >> 8) & 0xFF;
+    int b1 = color1 & 0xFF;
+
+    int r2 = (color2 >> 16) & 0xFF;
+    int g2 = (color2 >> 8) & 0xFF;
+    int b2 = color2 & 0xFF;
+
+    int r = (int)(r1 + (r2 - r1) * t);
+    int g = (int)(g1 + (g2 - g1) * t);
+    int b = (int)(b1 + (b2 - b1) * t);
+
+    return create_color(r, g, b);
+}
+
 void	put_color(t_fractole *f, int pixel_index, double iter)
 {
 	int	color_core;
 	int	color_in;
 	int	color_out;
+	int color_to_put;
+	double	ratio;
 
 	color_core = f->palette->core;
 	color_in = f->palette->in;
 	color_out = f->palette->out;
+	ratio = 0.0;
 	if (iter == f->max_iter)
-	 	*(int *)(f->img_addr + pixel_index) = color_core;
-	else if (iter >= f->max_iter * 0.80)
-		*(int *)(f->img_addr + pixel_index) = iter * color_in;
-	else if (iter >= f->max_iter * 0.30)
-	 	*(int *)(f->img_addr + pixel_index) = iter * color_out;
+		color_to_put = color_core;
+	else
+	{
+		ratio = iter / f->max_iter;
+		if (ratio >= 0.90)
+			color_to_put = interpolate_color(color_in, color_core, (ratio - 0.90) / 0.25);
+		else if (ratio >= 0.75)
+			color_to_put = interpolate_color(color_out, color_in, (ratio - 0.75) / 0.25);
+		else
+			color_to_put = interpolate_color(color_out, color_in, (ratio / 0.90));
+	}
+ 	*(int *)(f->img_addr + pixel_index) = color_to_put;
 }
-	// t_palette	*palette;
-
-	// palette = f->palette;
-	// if (iter == f->max_iter)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->core;
-	// else if (iter >= f->max_iter * 0.80)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outline_1;
-	// else if (iter >= f->max_iter * 0.70)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outline_2;
-	// else if (iter >= f->max_iter * 0.60)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outline_3;
-	// else if (iter >= f->max_iter * 0.50)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outline_4;
-	// else if (iter >= f->max_iter * 0.40)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outline_5;
-	// else if (iter >= f->max_iter * 0.30)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outer_1;
-	// else if (iter >= f->max_iter * 0.20)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outer_2;
-	// else if (iter >= f->max_iter * 0.15)
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outer_3;
-	// else
-	// 	*(int *)(f->img_addr + pixel_index) = palette->outer_4;
-
 
 void	make_starry_night(t_palette *palette)
 {
-	palette->core = create_color(255, 255, 255);
+	palette->core = create_color(0, 0, 0);
 	palette->out = create_color(102, 102, 255);
 	palette->in = create_color(102, 0, 0);
-	// palette->outer_1 = create_color(102, 102, 255);
-	// palette->outer_2 = create_color(51, 51, 255);
-	// palette->outer_3 = create_color(0, 0, 153);
-	// palette->outer_4 = create_color(0, 0, 102);
-	// palette->outline_1 = create_color(102, 0, 0);
-	// palette->outline_2 = create_color(255, 0, 0);
-	// palette->outline_3 = create_color(255, 128, 0);
-	// palette->outline_4 = create_color(255, 255, 51);
-	// palette->outline_5 = create_color(255, 255, 204);
 }
 
 void	make_psychedelic(t_palette *palette)
 {
-	palette->core = create_color(255, 51, 153);
-	palette->out = create_color(0, 255, 0);
-	palette->in = create_color(255, 255, 102);
-	// palette->outer_1 = create_color(0, 255, 0);
-	// palette->outer_2 = create_color(51, 51, 255);
-	// palette->outer_3 = create_color(204, 204, 255);
-	// palette->outer_4 = create_color(255, 255, 255);
-	// palette->outline_1 = create_color(255, 255, 102);
-	// palette->outline_2 = create_color(51, 255, 255);
-	// palette->outline_3 = create_color(51, 255, 153);
-	// palette->outline_4 = create_color(127, 0, 255);
-	// palette->outline_5 = create_color(128, 255, 0);
+	palette->core = create_color(0, 0, 0);
+	palette->out = create_color(255, 153, 255);
+	palette->in = create_color(255, 255, 51);
 }
 
 void	make_firestorm(t_palette *palette)
 {
-	palette->core = create_color(102, 0, 0);
+	palette->core = create_color(0, 0, 0);
 	palette->out = create_color(255, 128, 0);
-	palette->in = create_color(255, 0, 0);
-	// palette->outer_1 = create_color(255, 128, 0);
-	// palette->outer_2 = create_color(255, 102, 102);
-	// palette->outer_3 = create_color(255, 255, 102);
-	// palette->outer_4 = create_color(51, 0, 0);
-	// palette->outline_1 = create_color(255, 0, 0);
-	// palette->outline_2 = create_color(204, 102, 102);
-	// palette->outline_3 = create_color(204, 0, 0);
-	// palette->outline_4 = create_color(255, 153, 51);
-	// palette->outline_5 = create_color(255, 255, 51);
+	palette->in = create_color(102, 0, 0);
 }
 
 t_palette	*create_palette(char *mode)
