@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 10:56:18 by jteissie          #+#    #+#              #
-#    Updated: 2024/07/02 14:54:17 by jteissie         ###   ########.fr        #
+#    Updated: 2024/07/03 14:32:04 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC_FILES = main.c \
 			events.c \
 			palette_utils.c \
 			mandelbrot.c \
-			julia.c
+			julia.c \
+			burning_ship.c
 
 INCLUDE = 	-I include/ \
 			-I minilibx-linux \

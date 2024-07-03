@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 13:40:43 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:33:33 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@
 # define PIXEL_INDEX(x, y, line, bpp) ((y) * (line) + (x) * ((bpp) / 8));
 # define MANDELBROT_ESCAPE 4
 # define JULIA_ESCAPE 4
+# define BURNING_ESCAPE 4
 # define MAX_ITER 40
 # define MANDELBROT 1
 # define JULIA 2
+# define BURNING 3
 typedef	struct s_palette
 {
 	int	outer_1;
@@ -69,4 +71,5 @@ void		put_color(t_fractole *f, int pixel_index, double iter);
 void		create_image(t_fractole *f);
 void		render_mandelbrot(t_fractole *f, int size_line, int bpp);
 void		render_julia(t_fractole *f, int size_line, int bpp);
+void		render_burning(t_fractole *f, int size_line, int bpp);
 #endif

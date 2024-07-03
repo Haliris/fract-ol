@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:35:41 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 11:24:01 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:41:21 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ void	set_scale(t_fractole *f)
 		f->max_i = -2.0;
 		f->min_i =  f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
+	if (f->set == BURNING)
+	{
+		f->min_r = -2.0;
+		f->max_r = 1.0;
+		f->max_i = 1.0;
+		f->min_i =  f->max_i - (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	}
 }
-
 void	initialize(t_fractole *f)
 {
 	f->mlx = mlx_init();

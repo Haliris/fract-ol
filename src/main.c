@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 13:03:00 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:31:27 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	parse_set(char *set, t_fractole *f)
 		f->set = MANDELBROT;
 	if (ft_strncmp(set, "julia", 5) == 0)
 		f->set = JULIA;
+	if (ft_strncmp(set, "burning", 7) == 0)
+		f->set = BURNING;
 }
 
 #include <stdio.h>
@@ -40,6 +42,8 @@ void	create_image(t_fractole *f)
 		render_mandelbrot(f, line_bytes, pixel_bits);
 	else if (f->set == JULIA)
 		render_julia(f, line_bytes, pixel_bits);
+	else if (f->set == BURNING)
+		render_burning(f, line_bytes, pixel_bits);
 	else
 		return ;
 	mlx_put_image_to_window(f->mlx, f->window, f->img, 0, 0);
