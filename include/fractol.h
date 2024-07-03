@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 18:25:15 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:23:40 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_fractole
 	double		max_i;
 	double		min_i;
 	int			set;
+	double		max_iter;
 }	t_fractole;
 
 void		clean(t_fractole *fractole);

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:51:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 18:49:39 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:47:02 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,38 @@ void	do_zoom(t_fractole *f, double dist)
 	f->max_i = f->min_i + dist * i_center;
 }
 
+void	do_move(t_fractole *f, double dist_r, double dist_i)
+{
+	double	r_center;
+	double	i_center;
+
+	r_center = f->min_r - f->max_r;
+	i_center = f->max_i - f->min_i;
+	f->max_r += dist_r;
+	f->min_r += dist_r;
+	f->max_i += dist_i;
+	f->min_i += dist_i;
+}
+
 int	key_events(int keycode, t_fractole *fractole)
 {
+	if (keycode == 65363) //right
+		do_move(fractole, 0.5, 0.0);
+	if (keycode == 65361) //left
+		do_move(fractole, -0.5, 0.0);
+	if (keycode == 65362) //up
+		do_move(fractole, 0.0, 0.5);
+	if (keycode == 65364) //down
+		do_move(fractole, 0.0, -0.5);
+	if (keycode == 112)
+		fractole->max_iter += 10;
+	if (keycode == 111)
+		if (fractole->max_iter - 10 >= 0)
+			fractole->max_iter -= 10;
 	if (keycode == 65451)
-		do_zoom(fractole, 0.10);
+		do_zoom(fractole, 0.50);
 	if (keycode == 65453)
-		do_zoom(fractole, 10.0);
+		do_zoom(fractole, 2.0);
 	if (keycode == ESC_KEY)
 		clean(fractole);
 	create_image(fractole);

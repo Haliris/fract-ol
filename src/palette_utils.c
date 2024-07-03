@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:22 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 17:11:49 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:34:27 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ void	put_color(t_fractole *f, int pixel_index, int iter)
 	t_palette	*palette;
 
 	palette = f->palette;
-	if (iter == MAX_ITER)
+	if (iter == f->max_iter)
 		*(int *)(f->img_addr + pixel_index) = palette->core;
-	else if (iter >= MAX_ITER * 0.99)
+	else if (iter >= f->max_iter * 0.99)
 		*(int *)(f->img_addr + pixel_index) = palette->outline_1;
-	else if (iter >= MAX_ITER * 0.50)
+	else if (iter >= f->max_iter * 0.50)
 		*(int *)(f->img_addr + pixel_index) = palette->outline_2;
-	else if (iter >= MAX_ITER * 0.35)
+	else if (iter >= f->max_iter * 0.35)
 		*(int *)(f->img_addr + pixel_index) = palette->outline_3;
-	else if (iter >= MAX_ITER * 0.25)
+	else if (iter >= f->max_iter * 0.25)
 		*(int *)(f->img_addr + pixel_index) = palette->outer_1;
-	else if (iter >= MAX_ITER * 0.20)
+	else if (iter >= f->max_iter * 0.20)
 		*(int *)(f->img_addr + pixel_index) = palette->outer_2;
-	else if (iter >= MAX_ITER * 0.10)
+	else if (iter >= f->max_iter * 0.10)
 		*(int *)(f->img_addr + pixel_index) = palette->outer_3;
-	else if (iter >= MAX_ITER * 0.03)
+	else if (iter >= f->max_iter * 0.03)
 		*(int *)(f->img_addr + pixel_index) = palette->outer_4;
 	else
 		*(int *)(f->img_addr + pixel_index) = palette->background;

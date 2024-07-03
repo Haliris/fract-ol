@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:35:41 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/02 18:07:25 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:24:01 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	initialize(t_fractole *f)
 	f->palette = NULL;
 	swap_palette(f, "default");
 	f->img_addr = NULL;
+	f->max_iter = MAX_ITER;
 	f->window = mlx_new_window(f->mlx, WIDTH, HEIGHT, "Fract-ol");
 	if (!f->mlx || !f->img || !f->palette || !f->window)
 	{
