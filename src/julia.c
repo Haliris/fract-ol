@@ -6,15 +6,15 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:53:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 11:32:21 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:46:13 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	iterate_julia(double z_real, double z_imag, double max)
+double	iterate_julia(double z_real, double z_imag, double max)
 {
-	int		iter;
+	double	iter;
 	double	c_real;
 	double	c_imag;
 	double	real_temp;
@@ -38,7 +38,7 @@ void	render_julia(t_fractole *f, int size_line, int bpp)
 	int			y;
 	double		real;
 	double		imag;
-	int			iter;
+	double		iter;
 	int			pixel_index;
 
 	y = 0;

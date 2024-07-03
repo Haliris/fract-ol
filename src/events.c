@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:51:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 12:42:46 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:52:29 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,20 @@ void	do_move(t_fractole *f, double dist_r, double dist_i)
 	f->min_i += dist_i * range_i;
 }
 
+void	change_palette(t_fractole *f, int mode)
+{
+	if (mode == 49)
+		swap_palette(f, "default");
+	if (mode == 50)
+		swap_palette(f, "psychedelic");
+	if (mode == 51)
+		swap_palette(f, "firestorm");
+}
+
 int	key_events(int keycode, t_fractole *fractole)
 {
+	if (keycode == 49 || keycode == 50 || keycode == 51)
+		change_palette(fractole, keycode);
 	if (keycode == 65363) //right
 		do_move(fractole, 0.1, 0.0);
 	if (keycode == 65361) //left

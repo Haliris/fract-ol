@@ -6,15 +6,15 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:33:14 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 11:32:00 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:45:54 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	iterate_mandelbrot(const double c_real, const double c_imag, double max)
+double	iterate_mandelbrot(const double c_real, const double c_imag, double max)
 {
-	int		iter;
+	double	iter;
 	double	z_real;
 	double	z_imag;
 	double	real_temp;
@@ -39,7 +39,7 @@ void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
 	int			y;
 	double		real;
 	double		imag;
-	int			iter;
+	double		iter;
 	int			pixel_index;
 
 	y = 0;
