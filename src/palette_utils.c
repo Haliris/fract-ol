@@ -17,23 +17,6 @@ int	create_color(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-int interpolate_color(int color1, int color2, double t)
-{
-    int r1 = (color1 >> 16) & 0xFF;
-    int g1 = (color1 >> 8) & 0xFF;
-    int b1 = color1 & 0xFF;
-
-    int r2 = (color2 >> 16) & 0xFF;
-    int g2 = (color2 >> 8) & 0xFF;
-    int b2 = color2 & 0xFF;
-
-    int r = (int)(r1 + (r2 - r1) * t);
-    int g = (int)(g1 + (g2 - g1) * t);
-    int b = (int)(b1 + (b2 - b1) * t);
-
-    return create_color(r, g, b);
-}
-
 void	put_color(t_fractole *f, int pixel_index, double iter)
 {
 	int	color_core;
@@ -52,11 +35,11 @@ void	put_color(t_fractole *f, int pixel_index, double iter)
 	{
 		ratio = iter / f->max_iter;
 		if (ratio >= 0.90)
-			color_to_put = interpolate_color(color_in, color_core, (ratio - 0.90) / 0.25);
-		else if (ratio >= 0.75)
-			color_to_put = interpolate_color(color_out, color_in, (ratio - 0.75) / 0.25);
+			color_to_put = ratio * color_in;
+		else if (ratio >= 0.10)
+			color_to_put = ratio * (color_in - color_out);
 		else
-			color_to_put = interpolate_color(color_out, color_in, (ratio / 0.90));
+			color_to_put = color_out;
 	}
  	*(int *)(f->img_addr + pixel_index) = color_to_put;
 }
