@@ -6,22 +6,22 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:53:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 12:46:13 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:07:50 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	iterate_julia(double z_real, double z_imag, double max)
+double	iterate_julia(double z_real, double z_imag, double max, t_fractole *f)
 {
-	double	iter;
+	double			iter;
 	double	c_real;
 	double	c_imag;
-	double	real_temp;
+	double			real_temp;
 
 	iter = 0;
-	c_real = -1.476;
-	c_imag = 0;
+	c_real = f->julia_consts[0];
+	c_imag = f->julia_consts[1];
 	while (z_real * z_real + z_imag * z_imag <= JULIA_ESCAPE && iter < max)
 	{
 		real_temp = z_real * z_real - z_imag * z_imag + c_real;
@@ -49,7 +49,7 @@ void	render_julia(t_fractole *f, int size_line, int bpp)
 		{
 			real = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
 			imag = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
-			iter = iterate_julia(real, imag, f->max_iter);
+			iter = iterate_julia(real, imag, f->max_iter, f);
 			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
 			put_color(f, pixel_index, iter);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 14:33:33 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:06:47 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@
 # define BURNING 3
 typedef	struct s_palette
 {
-	int	outer_1;
-	int	outer_2;
-	int	outer_3;
-	int	outer_4;
-	int	outline_1;
-	int	outline_2;
-	int outline_3;
-	int	outline_4;
-	int	outline_5;
+// 	int	outer_1;
+// 	int	outer_2;
+// 	int	outer_3;
+// 	int	outer_4;
+// 	int	outline_1;
+// 	int	outline_2;
+// 	int outline_3;
+// 	int	outline_4;
+// 	int	outline_5;
 	int	core;
+	int	out;
+	int	in;
 }	t_palette;
 
 typedef struct s_fractole
@@ -55,10 +57,12 @@ typedef struct s_fractole
 	double		min_i;
 	int			set;
 	double		max_iter;
+	double		julia_consts[2];
 }	t_fractole;
 
 void		clean(t_fractole *fractole);
 void		initialize(t_fractole *fractole);
+double		ft_atof(char *nptr);
 int			key_events(int keycode, t_fractole *fractole);
 void		swap_palette(t_fractole *f, char *mode);
 int			mouse_events(int mouse_code, t_fractole *fractole);

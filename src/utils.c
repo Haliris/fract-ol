@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:35:41 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 14:41:21 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:41:06 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,50 @@ void	clean(t_fractole *fractole)
 	mlx_destroy_display(fractole->mlx);
 	free(fractole->mlx);
 	exit (EXIT_SUCCESS);
+}
+
+void	add_decimals(double *result, char *nptr)
+{
+	int		i;
+	double	magnitude;
+
+	magnitude = 10.0;
+	i = 0;
+	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		*result = *result + ((nptr[i] - '0') / magnitude);
+		magnitude *= 10.0;
+		i++;
+	}
+}
+
+double	ft_atof(char *nptr)
+{
+	int		i;
+	double	result;
+	int		minus;
+
+	i = 0;
+	result = 0;
+	minus = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			minus = 1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + (nptr[i] - '0');
+		i++;
+	}
+	if (nptr[i++] == '.')
+		add_decimals(&result, &nptr[i]);
+	if (minus)
+		result *= -1;
+	return (result);
 }
 
 void	set_scale(t_fractole *f)
