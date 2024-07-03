@@ -72,7 +72,7 @@ int	key_events(int keycode, t_fractole *fractole)
 		if (fractole->max_iter - 10 >= 0)
 			fractole->max_iter -= 10;
 	if (keycode == 65451)
-		do_zoom(fractole, 0.50);
+		do_zoom(fractole, 0.5);
 	if (keycode == 65453)
 		do_zoom(fractole, 2.0);
 	if (keycode == ESC_KEY)
@@ -81,18 +81,21 @@ int	key_events(int keycode, t_fractole *fractole)
 	return (1);
 }
 
-void	do_dezoom(t_fractole *fractole, double dist)
+int	mouse_events(int mouse_code, int x, int y, t_fractole *fractole)
 {
-	(void)dist;
-	(void)fractole;
+	x -= WIDTH / 2;
+	y -= HEIGHT / 2;
+	if (mouse_code == 4)
+		do_zoom(fractole, 0.9);
+	if (mouse_code == 5)
+		do_zoom(fractole, 1.1);
+	create_image(fractole);
+	return (1);
 }
 
-int	mouse_events(int mouse_code, t_fractole *fractole)
+int	clean_handler(t_fractole *fractole)
 {
-	if (mouse_code == 4)
-		do_zoom(fractole, 1.10);
-	if (mouse_code == 5)
-		do_zoom(fractole, 0.90);
+	clean(fractole);
 	return (1);
 }
 

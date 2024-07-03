@@ -93,7 +93,8 @@ void	create_image(t_fractole *f)
 void	init_hooks(t_fractole *f)
 {
 	mlx_hook(f->window, KeyRelease, KeyReleaseMask, &key_events, f);
-	// mlx_hook(f->window, )
+	mlx_hook(f->window, ButtonPress, ButtonPressMask, &mouse_events, f);
+	mlx_hook(f->window, DestroyNotify, StructureNotifyMask, &clean_handler, f);
 }
 
 int	main(int ac, char **av)
@@ -109,9 +110,6 @@ int	main(int ac, char **av)
 	set_scale(&fractole);
 	init_hooks(&fractole);
 	create_image(&fractole);
-	// mlx_expose_hook(fractole.window, resize_events, &fractole);
-	// mlx_mouse_hook(fractole.window, mouse_events, &fractole);
- 	// mlx_key_hook(fractole.window, key_events, &fractole);
  	mlx_loop(fractole.mlx);
 	return (EXIT_SUCCESS);
 }

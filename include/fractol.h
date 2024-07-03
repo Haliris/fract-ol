@@ -65,7 +65,8 @@ void		initialize(t_fractole *fractole);
 double		ft_atof(char *nptr);
 int			key_events(int keycode, t_fractole *fractole);
 void		swap_palette(t_fractole *f, char *mode);
-int			mouse_events(int mouse_code, t_fractole *fractole);
+int			mouse_events(int mouse_code, int x, int y, t_fractole *fractole);
+int			clean_handler(t_fractole *fractole);
 int			resize_events(int code, t_fractole fractole);
 void		set_scale(t_fractole *f);
 

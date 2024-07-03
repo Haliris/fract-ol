@@ -35,9 +35,9 @@ void	put_color(t_fractole *f, int pixel_index, double iter)
 	{
 		ratio = iter / f->max_iter;
 		if (ratio >= 0.90)
-			color_to_put = ratio * color_in;
+			color_to_put = (ratio * (f->max_r - f->min_r)) * color_in;
 		else if (ratio >= 0.10)
-			color_to_put = ratio * (color_in - color_out);
+			color_to_put = (ratio * (f->max_r - f->min_r)) * (color_in - color_out);
 		else
 			color_to_put = color_out;
 	}
