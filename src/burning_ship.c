@@ -6,13 +6,13 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:10:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 14:36:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:42:37 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	iterate_burning(const double c_real, const double c_imag, double max)
+double	calculate_burning(const double c_real, const double c_imag, double max)
 {
 	double	iter;
 	double	z_real;
@@ -32,13 +32,20 @@ double	iterate_burning(const double c_real, const double c_imag, double max)
 	return (iter);
 }
 
+double	iterate_burning(int x, int y, double max, t_fractole *f)
+{
+	double		real;
+	double		imag;
+
+	real = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+	imag = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
+	return (calculate_burning(real, imag, max));
+}
 
 void	render_burning(t_fractole *f, int size_line, int bpp)
 {
 	int			x;
 	int			y;
-	double		real;
-	double		imag;
 	double		iter;
 	int			pixel_index;
 
@@ -48,9 +55,7 @@ void	render_burning(t_fractole *f, int size_line, int bpp)
 	{
 		while (x < WIDTH)
 		{
-			real = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-			imag = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
-			iter = iterate_burning(real, imag, f->max_iter);
+			iter = iterate_burning(x, y, f->max_iter, f);
 			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
 			put_color(f, pixel_index, iter);
 			x++;

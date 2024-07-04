@@ -6,18 +6,18 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:53:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 16:07:50 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:30:56 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	iterate_julia(double z_real, double z_imag, double max, t_fractole *f)
+double	calculate_julia(double z_real, double z_imag, double max, t_fractole *f)
 {
-	double			iter;
+	double	iter;
 	double	c_real;
 	double	c_imag;
-	double			real_temp;
+	double	real_temp;
 
 	iter = 0;
 	c_real = f->julia_consts[0];
@@ -32,12 +32,20 @@ double	iterate_julia(double z_real, double z_imag, double max, t_fractole *f)
 	return (iter);
 }
 
+double	iterate_julia(int x, int y, double max, t_fractole *f)
+{
+	double		real;
+	double		imag;
+
+	real = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+	imag = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
+	return (calculate_julia(real, imag, max, f));
+}
+
 void	render_julia(t_fractole *f, int size_line, int bpp)
 {
 	int			x;
 	int			y;
-	double		real;
-	double		imag;
 	double		iter;
 	int			pixel_index;
 
@@ -47,9 +55,7 @@ void	render_julia(t_fractole *f, int size_line, int bpp)
 	{
 		while (x < WIDTH)
 		{
-			real = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-			imag = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
-			iter = iterate_julia(real, imag, f->max_iter, f);
+			iter = iterate_julia(x, y, f->max_iter, f);
 			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
 			put_color(f, pixel_index, iter);
 			x++;

@@ -6,13 +6,14 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/03 16:06:47 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:53:29 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include "mlx.h"
+# include "keys.h"
 # include "libft.h"
 # include <math.h>
 # include <X11/X.h>
@@ -30,15 +31,6 @@
 # define BURNING 3
 typedef	struct s_palette
 {
-// 	int	outer_1;
-// 	int	outer_2;
-// 	int	outer_3;
-// 	int	outer_4;
-// 	int	outline_1;
-// 	int	outline_2;
-// 	int outline_3;
-// 	int	outline_4;
-// 	int	outline_5;
 	int	core;
 	int	out;
 	int	in;
@@ -60,15 +52,16 @@ typedef struct s_fractole
 	double		julia_consts[2];
 }	t_fractole;
 
-void		clean(t_fractole *fractole);
-void		initialize(t_fractole *fractole);
+int			clean(t_fractole *fractole);
+void		initialize(t_fractole *fractole, char **av, int ac);
+void		handle_param_error(int exit_code);
 double		ft_atof(char *nptr);
 int			key_events(int keycode, t_fractole *fractole);
 void		swap_palette(t_fractole *f, char *mode);
+void		change_palette(t_fractole *f, int mode);
+
 int			mouse_events(int mouse_code, int x, int y, t_fractole *fractole);
-int			clean_handler(t_fractole *fractole);
-int			resize_events(int code, t_fractole fractole);
-void		set_scale(t_fractole *f);
+void		ft_clear_window(t_fractole *f, int size_line, int bpp);
 
 int			create_color(int r, int g, int b);
 void		put_color(t_fractole *f, int pixel_index, double iter);
