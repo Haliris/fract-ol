@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:33:14 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 11:44:24 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:53:58 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	render_mandelbrot(t_fractole *f, int size_line, int bpp)
 		{
 			iter = iterate_mandelbrot(x, y, f->max_iter, f);
 			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
-			put_color(f, pixel_index, iter);
+			if (f->palette->scheme == RANDOM)
+				put_color_random(f, pixel_index, iter);
+			else
+				put_color_inter(f, pixel_index, iter);
 			x++;
 		}
 		x = 0;

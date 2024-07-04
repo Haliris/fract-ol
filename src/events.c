@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:51:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 13:28:30 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:07:31 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,16 @@ int	key_events(int keycode, t_fractole *fractole)
 		do_move(fractole, 0.1, 0.0);
 	if (keycode == ARROW_LEFT)
 		do_move(fractole, -0.1, 0.0);
-	if (keycode == ARROW_UP)
-		do_move(fractole, 0.0, 0.1);
 	if (keycode == ARROW_DOWN)
+		do_move(fractole, 0.0, 0.1);
+	if (keycode == ARROW_UP)
 		do_move(fractole, 0.0, -0.1);
 	if (keycode == KEY_P)
 		fractole->max_iter += 5;
 	if (keycode == KEY_O && fractole->max_iter - 5 >= 0)
 			fractole->max_iter -= 5;
+	if (keycode == KEY_C)
+		change_palette(fractole, keycode);
 	if (keycode == KEY_ESC)
 		exit(clean(fractole));
 	create_image(fractole);
@@ -81,6 +83,8 @@ int	mouse_events(int mouse_code, int x, int y, t_fractole *f)
 
 void	change_palette(t_fractole *f, int mode)
 {
+	if (mode == KEY_C)
+		f->palette->scheme *= -1;
 	if (mode == KEY_1)
 		swap_palette(f, "default");
 	if (mode == KEY_2)

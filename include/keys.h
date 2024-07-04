@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:45:16 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 11:49:19 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:55:08 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define ARROW_DOWN 65364
 # define KEY_P 112
 # define KEY_O 111
+# define KEY_C 99
 # define KEY_ESC 65307
 # define KEY_1 49
 # define KEY_2 50

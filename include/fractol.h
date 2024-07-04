@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 13:40:32 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:56:10 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@
 # define JULIA 2
 # define BURNING 3
 
+# define INTERPOLATE 1
+# define RANDOM -1
 typedef struct s_palette
 {
 	int	core;
 	int	out;
 	int	in;
+	int	scheme;
 }	t_palette;
 
 typedef struct s_fractole
@@ -66,7 +69,9 @@ int			mouse_events(int mouse_code, int x, int y, t_fractole *fractole);
 void		ft_clear_window(t_fractole *f, int size_line, int bpp);
 
 int			create_color(int r, int g, int b);
-void		put_color(t_fractole *f, int pixel_index, double iter);
+int			interpolate_color(int color1, int color2, double t);
+void		put_color_random(t_fractole *f, int pixel_index, double iter);
+void		put_color_inter(t_fractole *f, int pixel_index, double iter);
 
 void		create_image(t_fractole *f);
 void		render_mandelbrot(t_fractole *f, int size_line, int bpp);

@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 10:56:18 by jteissie          #+#    #+#              #
-#    Updated: 2024/07/04 13:39:46 by jteissie         ###   ########.fr        #
+#    Updated: 2024/07/04 15:49:16 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_FILES = main.c \
 			init.c \
 			events.c \
 			palettes.c \
+			interpolate_color.c \
 			palette_utils.c \
 			mandelbrot.c \
 			julia.c \
