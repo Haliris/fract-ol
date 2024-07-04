@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:22 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 15:58:45 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:13:22 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,21 @@ void	swap_palette(t_fractole *f, char *mode)
 		free(f->palette);
 	f->palette = create_palette(mode);
 	if (!f->palette)
-		return ;
+	{
+		ft_putstr_fd("Could not replace palette struct?!\n", STDERR_FILENO);
+		clean(f);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	change_palette(t_fractole *f, int mode)
+{
+	if (mode == KEY_C)
+		f->palette->scheme *= -1;
+	if (mode == KEY_1)
+		swap_palette(f, "default");
+	if (mode == KEY_2)
+		swap_palette(f, "psychedelic");
+	if (mode == KEY_3)
+		swap_palette(f, "firestorm");
 }

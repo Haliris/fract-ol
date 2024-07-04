@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:51:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 16:07:31 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:14:32 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,4 @@ int	mouse_events(int mouse_code, int x, int y, t_fractole *f)
 		do_zoom(f, 1.15, mouse_r, mouse_imag);
 	create_image(f);
 	return (1);
-}
-
-void	change_palette(t_fractole *f, int mode)
-{
-	if (mode == KEY_C)
-		f->palette->scheme *= -1;
-	if (mode == KEY_1)
-		swap_palette(f, "default");
-	if (mode == KEY_2)
-		swap_palette(f, "psychedelic");
-	if (mode == KEY_3)
-		swap_palette(f, "firestorm");
 }
