@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 15:56:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:09:34 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define INTERPOLATE 1
 # define RANDOM -1
+
 typedef struct s_palette
 {
 	int	core;

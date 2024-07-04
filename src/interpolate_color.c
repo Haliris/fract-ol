@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:42:53 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 15:43:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:09:14 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	interpolate_blue(int color1, int color2, double t)
 	return ((int)(b1 + (b2 - b1) * t));
 }
 
-int interpolate_color(int color1, int color2, double t)
+int	interpolate_color(int color1, int color2, double t)
 {
 	int	r;
 	int	g;
@@ -51,5 +51,5 @@ int interpolate_color(int color1, int color2, double t)
 	r = interpolate_red(color1, color2, t);
 	g = interpolate_green(color1, color2, t);
 	b = interpolate_blue(color1, color2, t);
-	return create_color(r, g, b);
+	return (create_color(r, g, b));
 }
