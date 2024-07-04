@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:12 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 12:53:29 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:40:32 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 # define MANDELBROT 1
 # define JULIA 2
 # define BURNING 3
-typedef	struct s_palette
+
+typedef struct s_palette
 {
 	int	core;
 	int	out;
@@ -58,6 +59,7 @@ void		handle_param_error(int exit_code);
 double		ft_atof(char *nptr);
 int			key_events(int keycode, t_fractole *fractole);
 void		swap_palette(t_fractole *f, char *mode);
+t_palette	*create_palette(char *mode);
 void		change_palette(t_fractole *f, int mode);
 
 int			mouse_events(int mouse_code, int x, int y, t_fractole *fractole);

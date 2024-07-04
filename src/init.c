@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:35:41 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 13:26:51 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:41:29 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	clean(t_fractole *fractole)
 
 void	parse_set(char *set, t_fractole *f)
 {
-	if (ft_strncmp(set, "mandelbrot", 10) == 0)
+	if (ft_strncmp(set, "mandelbrot", 11) == 0)
 		f->set = MANDELBROT;
-	else if (ft_strncmp(set, "julia", 5) == 0)
+	else if (ft_strncmp(set, "julia", 6) == 0)
 		f->set = JULIA;
-	else if (ft_strncmp(set, "burning", 7) == 0)
+	else if (ft_strncmp(set, "burning", 8) == 0)
 		f->set = BURNING;
 	else
 		handle_param_error(EXIT_FAILURE);

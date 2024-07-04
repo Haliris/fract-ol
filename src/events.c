@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:51:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 11:59:02 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:28:30 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	key_events(int keycode, t_fractole *fractole)
 {
 	if (keycode == KEY_1 || keycode == KEY_2 || keycode == KEY_3)
 		change_palette(fractole, keycode);
-	if (keycode == ARROW_RIGHT) //right
+	if (keycode == ARROW_RIGHT)
 		do_move(fractole, 0.1, 0.0);
-	if (keycode == ARROW_LEFT) //left
+	if (keycode == ARROW_LEFT)
 		do_move(fractole, -0.1, 0.0);
-	if (keycode == ARROW_UP) //up
+	if (keycode == ARROW_UP)
 		do_move(fractole, 0.0, 0.1);
-	if (keycode == ARROW_DOWN) //down
+	if (keycode == ARROW_DOWN)
 		do_move(fractole, 0.0, -0.1);
 	if (keycode == KEY_P)
 		fractole->max_iter += 5;

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:29:40 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 13:26:20 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:33:54 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	create_image(t_fractole *f)
 	int	pixel_bits;
 	int	line_bytes;
 	int	endian;
-
 
 	f->img_addr = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
 	ft_clear_window(f, line_bytes, pixel_bits);
@@ -49,6 +48,6 @@ int	main(int ac, char **av)
 	initialize(&fractole, av, ac);
 	create_image(&fractole);
 	init_hooks(&fractole);
- 	mlx_loop(fractole.mlx);
+	mlx_loop(fractole.mlx);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:46:21 by jteissie          #+#    #+#             */
-/*   Updated: 2024/07/04 13:19:46 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:38:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_clear_window(t_fractole *f, int size_line, int bpp)
 		while (x < WIDTH)
 		{
 			pixel_index = PIXEL_INDEX(x, y, size_line, bpp);
-	 		*(int *)(f->img_addr + pixel_index) = create_color(0, 0, 0);
+			*(int *)(f->img_addr + pixel_index) = create_color(0, 0, 0);
 			x++;
 		}
 		x = 0;
